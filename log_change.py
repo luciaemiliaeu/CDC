@@ -31,8 +31,15 @@ class Handler(FileSystemEventHandler):
 
     @staticmethod
     def on_created(event):
+        # O código a seguir escuta um evento de criação de arquivo na pasta input_data.
+        # Caso um evento seja detectado, faz-se a comparação entre os dados inseridos(event.src_path) e o arquivo
+        # de dados mais atualizados (updated.csv).
+        # O arquivo updated.csv é então atualizado inserindo as linhas novas (onde a coluna 'op' == i) e atualiando as
+        # modificadas (onde a coluna 'op' == u).
+        # Ao final, os dados do novo evento são adicionadoa ao arquivo history.csv.
+
         if event.event_type == 'created':
-            print(event.src_path)
+
             source = pd.read_csv(event.src_path, header=[0], index_col=[1])
             target = pd.read_csv(SAVE_DIRECTORY + '\\updated.csv', header=[0], index_col=[1])
 
