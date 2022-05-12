@@ -85,7 +85,9 @@ def main():
     next_customer_id = 1
     events = []
     data = []
-
+    
+    # Para  funcionamento da aplicação, o trecho de código foi alterado para não excluir a pasta input_data, uma vez que existe uma thread escutando essa pasta.
+    # Assim, apenas os arquivos dentro da pasta são apagados. Além disso, a criação dos arquivos de saída é feita logo a seguir.
     # Recreate the input_data folder
     if os.path.isdir(PATH):
         filelist = [ f for f in os.listdir(PATH)]
@@ -93,7 +95,7 @@ def main():
             os.remove(os.path.join(PATH, f))
     else:
         os.makedirs(PATH)
-
+    
     #Recreate the output_data folder
     if os.path.isdir(PATH_OUT):
         filelist = [ f for f in os.listdir(PATH_OUT)]
