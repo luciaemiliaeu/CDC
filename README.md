@@ -15,4 +15,4 @@ Para executar o projeto você pode clonar o repositório e executar os scripts n
 
 Para encerrar as execuções, o read.py tem uma opção de saída no menu e os demais arquivos podem ser interrompidos com Ctrl+c no prompt.
 
-O código foi desenvolvido em python 3 e, além das bibliotecas nativas, utiliza duas biblioecas: pandas e watchdog. 
+O código foi desenvolvido em python 3 e, além das bibliotecas nativas, utiliza duas biblioecas: [pandas](https://pandas.pydata.org/getting_started.html) e [watchdog](https://pypi.org/project/watchdog/). 
