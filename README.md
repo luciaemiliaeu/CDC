@@ -5,6 +5,8 @@ O ojetivo desse projeto é processar eventos de CDC (Change Data Capture) enquan
 O código é composto por três scripts: generate.py, log_change.py e read.py. O generate.py gera arquivos de cdc na pasta input_data. Enquanto isso, o log_change.py escuta eventos de criação na mesma pasta, disparando a função de processamento dos arquivos e atualizando dois arquivos na pasta output_data: update.csv e history.csv. O arquivo update.csv contém apenas os dados mais recentes de cada usuário, enquanto o arquivo history.py guarda todo o histório de dados do CDC. 
 Por fim, o script read.py permite fazer consultas nos arquivos de output através de um menu iterativo. 
 
+Ah, tanto as pastas input_data quanto a output_data são criadas na execução do código :)
+
 ## 🛠️ Como executar o projeto
 Para executar o projeto você pode clonar o repositório e executar os scripts nas seguinte ordem:
 - Primeiro o log_change.py para que ele possa iniciar a escuta das pastas aguardando os evento. 
