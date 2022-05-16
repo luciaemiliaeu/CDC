@@ -6,8 +6,8 @@ import csv
 import pandas as pd
 
 PWD = os.getcwd()
-WATCH_DIRECTORY = PWD + "\input_data"
-SAVE_DIRECTORY = PWD + "\output_data"
+WATCH_DIRECTORY = os.path.join(PWD, "input_data") 
+SAVE_DIRECTORY = os.path.join(PWD, "output_data") 
 
 
 class OnMyWatch:
@@ -41,7 +41,7 @@ class Handler(FileSystemEventHandler):
         if event.event_type == 'created':
 
             source = pd.read_csv(event.src_path, header=[0], index_col=[1])
-            target = pd.read_csv(SAVE_DIRECTORY + '\\updated.csv', header=[0], index_col=[1])
+            target = pd.read_csv(os.path.join(SAVE_DIRECTORY, "updated.csv") , header=[0], index_col=[1])
 
             if not target.empty:
 
@@ -60,9 +60,9 @@ class Handler(FileSystemEventHandler):
                      source.reset_index()[['op', 'customer_id', 'balance', 'create_timestamp', 'update_timestamp']]])
 
             target.reset_index()[['op', 'customer_id', 'balance', 'create_timestamp', 'update_timestamp']] \
-                .to_csv(SAVE_DIRECTORY + "/updated.csv", index=False)
+                .to_csv(os.path.join(SAVE_DIRECTORY, "updated.csv") , index=False)
 
-            with open(SAVE_DIRECTORY + '/history.csv', 'a', newline='') as history:
+            with open(os.path.join(SAVE_DIRECTORY, "history.csv"), 'a', newline='') as history:
                 writer = csv.writer(history)
                 writer.writerows(source.reset_index()[
                                      ['op', 'customer_id', 'balance', 'create_timestamp', 'update_timestamp']].values)
