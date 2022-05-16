@@ -103,8 +103,8 @@ def main():
             os.remove(os.path.join(PATH_OUT, f))
         source = pd.DataFrame(columns=['op', 'customer_id', 'balance', 'create_timestamp', 'update_timestamp'])
         target = pd.DataFrame(columns=['op', 'customer_id', 'balance', 'create_timestamp', 'update_timestamp'])
-        source.to_csv(PATH_OUT + '/updated.csv', index=False)
-        target.to_csv(PATH_OUT + '/history.csv', index=False)
+        source.to_csv(os.path.join(PATH_OUT, "updated.csv"), index=False)
+        target.to_csv(os.path.join(PATH_OUT, "history.csv"), index=False)
     else:
         os.makedirs(PATH_OUT)
 
