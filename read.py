@@ -3,27 +3,29 @@ import pandas as pd
 import os
 
 PWD = os.getcwd()
-WATCH_DIRECTORY = PWD + "\input_data"
-SAVE_DIRECTORY = PWD + "\output_data"
+WATCH_DIRECTORY = os.path.join(PWD, "input_data") 
+SAVE_DIRECTORY = os.path.join(PWD, "output_data") 
+UPDATED_FILE = os.path.join(SAVE_DIRECTORY, "updated.csv")
+HISTORY_FILE = os.path.join(SAVE_DIRECTORY, "history.csv")
 
 ##b. i. Cinco clientes com maior saldo
 def get_top_balance():
-    df = pd.read_csv(SAVE_DIRECTORY+"\\updated.csv")
+    df = pd.read_csv(UPDATED_FILE)
     return df.sort_values(by='balance', ascending = False).head(5)
 
 ##b. ii. Cinco clientes atualizados por último
 def get_last_update():
-    df = pd.read_csv(SAVE_DIRECTORY+"\\updated.csv")
+    df = pd.read_csv(UPDATED_FILE)
     return df.sort_values(by='update_timestamp', ascending = False).head(5)
 
 ## b. iii. Saldo dos clientes
 def get_balance():
-    return pd.read_csv(SAVE_DIRECTORY+"\\updated.csv")
+    return pd.read_csv(UPDATED_FILE)
 
 ## C. Histórico de atualizações dos clientes com mais atualizações
 def get_history():
 
-    history = pd.read_csv(SAVE_DIRECTORY+"\\history.csv")
+    history = pd.read_csv(HISTORY_FILE)
 
     count_updates = history[history['op']=='u'].groupby('customer_id')['op'].count()
     max_updates = count_updates.max()
@@ -63,12 +65,4 @@ def inicial():
 
 if __name__ == "__main__":
     inicial()
-
-
-
-
-
-
-
-
 
